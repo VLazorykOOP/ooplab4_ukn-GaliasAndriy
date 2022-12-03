@@ -1,24 +1,39 @@
-﻿// OOPLab4T.cpp : Цей файл містить є шаблоном для 
-// виконання лаб. роботи №4. 
-// Він містинь функцію "main" з якої починається та закінчується виконання програми.
-//
+﻿#include <iostream>
+#include "Lab4Tasks.h" 
+using namespace std;
+char c = '4';
 
+int showTask(int answerTask)
+{
+    switch (answerTask) {
+    case '1':
+        vector3D();
+        break;
+    //case '2': return 10;
+    //case '3': return 20;
+    default:
+        cout << "Try again!";
+        break;
+    }
+    return answerTask;
+}
 
-#include <iostream>
-
-// Ваші файли загловки 
-//
-#include "Lab4Exmaple.h"
 int main()
 {
-    std::cout << " Lab #4  !\n";
-    //  Код виконання завдань
-    //  Головне меню завдань
-    //  Функції та класи можуть знаходитись в інших файлах проекту
+    int answer;
+    cout << "Choose a task! Enter number from 1 to 3" << endl;
+    cout << "    Main Menu  \n";
+    cout << "    1.  Task 1 (Vector3D) \n";
+    cout << "    2.  Task 2 (MatrixLong) \n";
+    cout << "    3.  Task 3 (List of people: N=, LastName, FirstName, MiddleName) \n";
+    cout << "    4.  Exit \n";
 
-    int chain = 1;
-    if (chain == 1) chain = mainExample1();
-    if (chain == 2) chain = mainExample2();
-    if (chain == 3) chain = mainExample3();
+    do {
+        cout << "\n    Enter: ";
+        c = cin.get(); 
+        cin.get();
+        showTask(c);
+    } while (c != '4');
 
+    return 0;
 }

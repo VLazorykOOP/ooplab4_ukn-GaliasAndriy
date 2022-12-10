@@ -1,65 +1,56 @@
-// #pragma once
-// #include "ComplexVector.h"
-// /// <summary>
-// /// Matrix
-// /// </summary>
-// /// <returns></returns>
-// class ComplexMatrix
-// {s
-// 	ComplexVector* vec=nullptr;
-// 	int n = 2, m = 2;
-// 	int state = 0;
-// public:
-// 	ComplexMatrix() : ComplexMatrix(2) {}
-// 	ComplexMatrix(int n) : ComplexMatrix(n, n) {};
-// 	ComplexMatrix(int n, int m) : ComplexMatrix(n, n, 0) {};
-// 	ComplexMatrix(int n, int m, ComplexDouble);
-// 	ComplexMatrix(const ComplexMatrix& s);
-// 	ComplexMatrix& operator=(const ComplexMatrix& s);
-// 	ComplexMatrix& operator=(ComplexMatrix&& s) noexcept;
-// 	~ComplexMatrix() {
-// 	//	std::cout << " del mat";
-// 		if (vec) delete[] vec;
-// 	}
-// 	void Input();
-// 	void Output();
-// 	friend istream& operator>>(istream& is, ComplexMatrix& s);
-// 	friend ostream& operator<<(ostream& os, ComplexMatrix& s);
-// 	// reload operators
-// 	bool operator!() const;   // true : v[i] != 0
-// 	bool operator~() const;   // true : all v[i] != 0
-// 	ComplexVector& operator[](int index);
+#pragma once
+#include "Vector3D.h"
+#include <iostream>
+using namespace std;
 
-// 	ComplexMatrix& operator+=(const ComplexMatrix& s);
-// 	ComplexMatrix& operator+=(const ComplexDouble& b);
-// 	ComplexMatrix& operator+=(const double& b);
+class matrixLong {
+private:
+	VectorLong* longArray;
+	int n = 0, m = 0;
+	int state = 0;
+	static int num_matrix;
+public:
+	matrixLong() { longArray = nullptr; n = m = state = 0; }
+	matrixLong(int size);
+	matrixLong(int n, int m, double a); //
+	matrixLong(int m, int n);
+	matrixLong(const matrixLong* s);
+	matrixLong& operator=(matrixLong& s);
+	VectorLong& operator[](int index) {
+		if (index >= 0 && index < n) return longArray[index];
+		cout << " Error: operator[] - index index out of range \n";
+		return longArray[0];
+	}
+	friend istream& operator>>(istream& is, matrixLong& s);
+	friend ostream& operator<<(ostream& os, matrixLong& s);
+	matrixLong& operator++(int);
+	matrixLong& operator--(int);
 
-// 	ComplexMatrix operator+(const ComplexMatrix& b);
-// 	ComplexMatrix operator+(const ComplexDouble& b);
-// 	ComplexMatrix operator+(const double& b);
+	void outputMatrix();
+	int getState() {
+		return state;
+	}
 
-// 	ComplexMatrix& operator-=(const ComplexMatrix& s);
-// 	ComplexMatrix& operator-=(const ComplexDouble& b);
-// 	ComplexMatrix& operator-=(const double& b);
+	matrixLong operator+(matrixLong v);
+	matrixLong operator+(float value);
+	matrixLong operator-(matrixLong v);
+	matrixLong operator-(float value);
 
-// 	ComplexMatrix operator-(const ComplexMatrix& b);
-// 	ComplexMatrix operator-(const ComplexDouble& b);
-// 	ComplexMatrix operator-(const double& b);
-	
-// 	ComplexMatrix& operator*=(const ComplexDouble& b);
-// 	ComplexMatrix& operator*=(const double& b);
+	matrixLong operator/(float value);
+	matrixLong operator*(float value);
 
-// 	ComplexMatrix operator*(const ComplexMatrix& b);
-// 	ComplexVector operator*(const ComplexVector& b);
-// 	ComplexMatrix operator*(const ComplexDouble& b);
-// 	ComplexMatrix operator*(const double& b);
+	matrixLong operator+=(matrixLong v);
+	matrixLong operator+=(float value);
+	matrixLong operator-=(matrixLong v);
+	matrixLong operator-=(float value);
 
+	matrixLong operator*(const matrixLong& b);;
+	matrixLong operator*=(float value);
+	matrixLong operator/=(float value);
 
-// 	ComplexMatrix& operator/=(const ComplexDouble& b);
-// 	ComplexMatrix& operator/=(const double& b);
+	bool operator>(const matrixLong& s);
+	bool operator>=(const matrixLong& s);
+	bool operator<(const matrixLong& s);
+	bool operator<=(const matrixLong& s);
 
-// 	ComplexMatrix operator/(const ComplexDouble& b);
-// 	ComplexMatrix operator/(const double& b);
-
-// 	void RandComplexMatrix();
-// };
+};

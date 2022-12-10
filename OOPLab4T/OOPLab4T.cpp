@@ -1,16 +1,17 @@
 ﻿#include <iostream>
 #include "Lab4Tasks.h" 
 using namespace std;
-char c = '4';
+char c;
 
-int showTask(int answerTask)
+int showTask(char answerTask)
 {
     switch (answerTask) {
     case '1':
         vector3D();
         break;
-    //case '2': return 10;
-    //case '3': return 20;
+    case '2':
+        matrixVeryLong();
+        break;
     default:
         cout << "Try again!";
         break;
@@ -30,7 +31,7 @@ int main()
 
     do {
         cout << "\n    Enter: ";
-        c = cin.get(); 
+        c = cin.get();
         cin.get();
         showTask(c);
     } while (c != '4');
